@@ -1,6 +1,7 @@
 import React from 'react'
 import  { graphql, StaticQuery} from 'gatsby'
 import styled from 'styled-components'
+import SiteLogo from './WpSiteLogo'
 
 const SiteInfoWrapper = styled.div`
     flex-grow: 1;
@@ -29,7 +30,8 @@ const Siteinfo = () => (
     render={props => (
       <SiteInfoWrapper>
         <SiteTitle>
-          {props.allWordpressSiteMetadata.edges[0].node.name}
+          <SiteLogo/>
+          {/* {props.allWordpressSiteMetadata.edges[0].node.name} */}
         </SiteTitle>
         <div dangerouslySetInnerHTML={{ __html: props.allWordpressSiteMetadata.edges[0].node.description}} />
       </SiteInfoWrapper>
