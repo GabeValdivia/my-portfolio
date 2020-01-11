@@ -8,7 +8,7 @@ const SiteLogoWrapper = styled.div`
 `
 
 const SiteLogoStyles = styled.img`
-    max-width: 25%;
+    max-width: 19%;
 `
 
 const SiteLogo = () => (
