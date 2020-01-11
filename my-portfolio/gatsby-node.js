@@ -126,15 +126,16 @@ exports.createPages = ({ graphql, actions }) => {
                   node {
                     excerpt
                     wordpress_id
-                    date
+                    date(formatString: "MMM Do, YYYY HH:mm")
                     title
                     content
+                    slug
                   }
                 }
               }
             }
-          `).then(result=>{
-            if(result.errors){
+          `).then(result => {
+            if (result.errors) {
               console.log(result.errors)
               reject(result.errors)
             }
@@ -142,18 +143,31 @@ exports.createPages = ({ graphql, actions }) => {
             const posts = result.data.allWordpressPost.edges
             const postsPerPage = 2
             const numberOfPages = Math.ceil(posts.length / postsPerPage)
-            const blogPostListTemplate = path.resolve('./src/templates/blogPostList.js')
+            const blogPostListTemplate = path.resolve(
+              "./src/templates/blogPostList.js"
+            )
 
-            Array.from({length: numberOfPages}).forEach((page, index) => {
+            Array.from({ length: numberOfPages }).forEach((page, index) => {
               createPage({
                 component: slash(blogPostListTemplate),
                 path: index === 0 ? `/blog` : `/blog/${index + 1}`,
                 context: {
-                  posts: posts.slice(index * postsPerPage, (index * postsPerPage) + postsPerPage),
+                  posts: posts.slice(
+                    index * postsPerPage,
+                    index * postsPerPage + postsPerPage
+                  ),
                   numberOfPages,
-                  currentPage: index + 1
+                  currentPage: index + 1,
+                },
+              })
+            })
 
-                }
+            const pageTemplate = path.resolve("./src/templates/page.js")
+            _.each(posts, (post) => {
+              createPage({
+                path:  `/post/${post.node.slug}`,
+                component: slash(pageTemplate),
+                context: post.node
               })
             })
 
