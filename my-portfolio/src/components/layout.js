@@ -16,6 +16,11 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'Open Sans', sans-serif;
     margin: 0;
   }
+
+  h1,h2,h3,h4,h5 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 900;
+  }
 `
 const LayoutWrapper = styled.div `
   max-width: 960px;
