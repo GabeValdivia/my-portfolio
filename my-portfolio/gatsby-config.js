@@ -5,6 +5,7 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
+    `gatsby-plugin-styled-components`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -114,7 +115,7 @@ module.exports = {
           "**/*/*/menus",
           "**/*/*/portfolio",
           "**/*/*/logo",
-          "**/*/*/favicon"
+          "**/*/*/favicon",
         ],
         // Blacklisted routes using glob patterns
         excludedRoutes: [],
@@ -124,7 +125,7 @@ module.exports = {
         // Defaults to false
         keepMediaSizes: false,
         // use a custom normalizer which is applied after the built-in ones.
-        normalizer: function ({ entities }) {
+        normalizer: function({ entities }) {
           return entities
         },
       },
