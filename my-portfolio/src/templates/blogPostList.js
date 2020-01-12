@@ -10,7 +10,7 @@ const Pagination = styled.div`
 
 const PageNumberWrapper = styled.div`
     border: 1px solid #eee;
-    background: ${props => props.isCurrentPage ? '#eee' : 'white'}
+    background: ${props => props.isCurrentPage ? '#eee' : 'white'};
 `
 
 const PageNumber = styled(Link)`
